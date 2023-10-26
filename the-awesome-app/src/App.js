@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Hello from './components/Hello';
 import Counter from './components/Counter';
+import ListProducts from './components/ListProducts';
 
 
 function App() {
@@ -25,8 +26,10 @@ function App() {
           {/* <Hello message="Hello React"/>
           <Hello message="React Testing Props"/> */}
 
-          <Counter value={5}/>
-          <Counter value={10}/>
+          {/* <Counter value={5}/>
+          <Counter value={10}/> */}
+
+          <ListProducts/>
       </section>
     </div>
   );
