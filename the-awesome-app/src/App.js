@@ -3,35 +3,47 @@ import './App.css';
 import Hello from './components/Hello';
 import Counter from './components/Counter';
 import ListProducts from './components/ListProducts';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import EditProduct from './components/EditProduct';
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <section>
-          {/* <Hello message="Hello React"/>
-          <Hello message="React Testing Props"/> */}
+    <Router>
+      <div className='container'>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">React</a>
+            <ul className="nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/counter">Counter</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">Products</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Login</Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
-          {/* <Counter value={5}/>
-          <Counter value={10}/> */}
+        <main >
+          <Routes>
+            <Route path='/' element={<Hello message="React routing"/>}/>
+            <Route path='/counter' element={<Counter value={5}/>}/>
+            <Route path='/products' element={<ListProducts/>}/>
+            <Route path='/products/:id' element={<EditProduct/>}/>
+          </Routes>
+        </main>
 
-          <ListProducts/>
-      </section>
-    </div>
+
+      </div>
+    </Router>
   );
 }
 

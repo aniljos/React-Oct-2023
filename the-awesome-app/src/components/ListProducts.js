@@ -28,6 +28,32 @@ function ListProducts(){
 
     }
 
+    async function handleDelete(product){
+
+        try{
+
+            const url = "http://localhost:9000/products/" + product.id;
+            const response = await axios.delete(url);
+            //process the process
+            alert("Product has been deleted");
+
+            //fetchProducts();
+
+            //update the products(state)
+            const copy_of_products = [...products]; // state in react is immutable
+            const index = copy_of_products.findIndex(item => item.id === product.id);
+            if(index !== -1){
+                copy_of_products.splice(index, 1); // removes an element
+                setProducts(copy_of_products);
+            }
+
+        }
+        catch(errorResponse){
+            alert("Failed to delete the product");
+        }
+        
+    }
+
     return (
         <div>
             <h4>List Products</h4>
@@ -35,11 +61,16 @@ function ListProducts(){
                 {products.map((product) => {
 
                     return (
-                        <div className='product'>
+                        <div key={product.id} className='product'>
                             <p>Id: {product.id}</p>
                             <p>{product.name}</p>
                             <p>{product.price}</p>
                             <p>{product.description}</p>
+                            <div>
+                                <button onClick={() => {handleDelete(product)}}>Delete</button> &nbsp;
+                                <button>Edit</button>
+                            </div>
+
                         </div>
                     )
                 })}
