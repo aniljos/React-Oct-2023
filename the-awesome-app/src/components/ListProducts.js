@@ -1,10 +1,12 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import './ListProducts.css';
+import { useNavigate } from 'react-router-dom';
 
 function ListProducts(){
 
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     //useEffect(callback, [list of dependencies]);
     // there are no dependencies
@@ -54,6 +56,10 @@ function ListProducts(){
         
     }
 
+    function handleEdit(product){
+        navigate("/products/" + product.id);
+    }
+
     return (
         <div>
             <h4>List Products</h4>
@@ -68,7 +74,7 @@ function ListProducts(){
                             <p>{product.description}</p>
                             <div>
                                 <button onClick={() => {handleDelete(product)}}>Delete</button> &nbsp;
-                                <button>Edit</button>
+                                <button onClick={() => {handleEdit(product)}}>Edit</button>
                             </div>
 
                         </div>
