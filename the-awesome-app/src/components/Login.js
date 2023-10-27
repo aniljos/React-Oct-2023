@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -10,6 +10,32 @@ function Login(){
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("Login Mounted");
+        userNameRef.current.focus();
+
+        return () => {
+            console.log("Login unmounted");
+        }
+
+    }, [])
+
+    // useEffect(() => {
+    //     console.log("Login Mounted-1");
+    //     userNameRef.current.focus();
+
+    //     return () => {
+    //         console.log("Login unmounted-1");
+    //     }
+
+    // }, [])
+
+    useEffect(() => {
+        console.log("Login updated", message);
+    }, [message]);
+
+
 
     async function validate(){
 

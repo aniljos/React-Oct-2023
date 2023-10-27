@@ -2,11 +2,14 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import './ListProducts.css';
 import { useNavigate } from 'react-router-dom';
+import {useSelector, useStore} from 'react-redux';
 
 function ListProducts(){
 
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
+    const auth = useSelector(state => state.auth);
+    
 
     //useEffect(callback, [list of dependencies]);
     // there are no dependencies
@@ -19,7 +22,9 @@ function ListProducts(){
     function fetchProducts(){
 
         const url = "http://localhost:9000/secure_products";
-        axios.get(url)
+        // Authorization : Bearer xxxxyyyyzzz
+        const headers = {"Authorization": `Bearer ${auth.accessToken}`};
+        axios.get(url, {headers})
                 .then((response) => {
                     console.log("success", response);
                     setProducts(response.data);
@@ -62,6 +67,7 @@ function ListProducts(){
 
     return (
         <div>
+            
             <h4>List Products</h4>
             <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'center'}}>
                 {products.map((product) => {

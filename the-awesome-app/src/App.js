@@ -7,6 +7,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 import EditProduct from './components/EditProduct';
 import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
             <a className="navbar-brand" href="#">React</a>
             <ul className="nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link active" to="/">Home</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/counter">Counter</Link>
@@ -37,7 +38,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Hello message="React routing"/>}/>
             <Route path='/counter' element={<Counter value={5}/>}/>
-            <Route path='/products' element={<ListProducts/>}/>
+            <Route path='/products' element={<ProtectedRoute> <ListProducts/> </ProtectedRoute>}/>
             <Route path='/products/:id' element={<EditProduct/>}/>
             <Route path='/login' element={<Login/>}/>
           </Routes>
