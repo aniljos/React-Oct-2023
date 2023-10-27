@@ -18,7 +18,7 @@ function ListProducts(){
 
     function fetchProducts(){
 
-        const url = "http://localhost:9000/products";
+        const url = "http://localhost:9000/secure_products";
         axios.get(url)
                 .then((response) => {
                     console.log("success", response);

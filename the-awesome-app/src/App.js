@@ -6,6 +6,7 @@ import ListProducts from './components/ListProducts';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 import EditProduct from './components/EditProduct';
+import Login from './components/Login';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path='/counter' element={<Counter value={5}/>}/>
             <Route path='/products' element={<ListProducts/>}/>
             <Route path='/products/:id' element={<EditProduct/>}/>
+            <Route path='/login' element={<Login/>}/>
           </Routes>
         </main>
 
